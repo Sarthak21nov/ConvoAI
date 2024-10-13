@@ -17,48 +17,61 @@ function LlamaChat(props) {
     const [response, setResponse] = useState("")
     const [messages, setMessages] = useState([])
 
+    function removeMarkdownFormatters(markdown) {
+      // Define regex patterns for various Markdown formatters
+      const patterns = [
+        /\\(.?)\\/g, // Bold: **text*
+        /(.*?)/g,     // Bold/Italic: _text_
+        // /\(.?)\/g,     // Italic: *text
+        /(.*?)/g,       // Italic: text
+        /(.*?)/g,     // Strikethrough: ~text~
+        /(.*?)/g,       // Inline code: text
+        /!\[.?\]\(.?\)/g, // Images: ![alt](url)
+        /\[.?\]\(.?\)/g, // Links: [text](url)
+        /^#{1,6}\s+/gm,   // Headers: #, ##, ###, etc.
+        />\s?/g,          // Blockquote: > text
+        /(\r?\n){2,}/g,   // Multiple newlines: convert to single newline
+      ];
+    
+      // Apply all patterns to remove markdown syntax
+      let cleanedText = markdown;
+      patterns.forEach(pattern => {
+        cleanedText = cleanedText.replace(pattern, '$1');
+      });
+    
+      // Remove remaining formatting artifacts like backslashes or extra newlines
+      cleanedText = cleanedText.trim();
+    
+      return cleanedText;
+    }
 
     async function generateResponse(){
-        // complete this
-      // const userMessage = {role: 'user', text: input}
-      // setInput("")
-      // setMessages((prevMessage)=>[...prevMessage, userMessage])
-
-      const apiToken = "LA-3a6447a853bb4c62a7b510cbf67e0c2cca69590325b44bd6821f3c253706b235";
-      const llamaAPI = new LlamaAI(apiToken);
-      const apiRequestJson = {
-        messages: [{ role: "user", content: "What is the weather like in Boston?" }],
-        functions: [
-          {
-            name: "get_current_weather",
-            description: "Get the current weather in a given location",
-            parameters: {
-              type: "object",
-              properties: {
-                location: {
-                  type: "string",
-                  description: "The city and state, e.g. San Francisco, CA",
-                },
-                days: {
-                  type: "number",
-                  description: "for how many days ahead you wants the forecast",
-                },
-                unit: { type: "string", enum: ["celsius", "fahrenheit"] },
-              },
-            },
-            required: ["location", "days"],
-          },
-        ],
-        stream: false,
-        function_call: "get_current_weather",
-      };
-      llamaAPI
-      .run(apiRequestJson)
-      .then((response) => {
-        console.log(response.choices[0].message.content)  
-      }).catch((error) => {
-        console.log("An error occurred", error)
-      });
+      const UserMessage = {role: 'user', text: input}
+        setMessages((prevMessage)=>[...prevMessage, UserMessage])  
+        const url = 'https://llama-3.p.rapidapi.com/llama3';
+        const options = {
+	        method: 'POST',
+	        headers: {
+		        'x-rapidapi-key': 'b3fb78a65fmsh15f544eaad719a1p12e9dbjsna9880e32747e',
+		        'x-rapidapi-host': 'llama-3.p.rapidapi.com',
+		        'Content-Type': 'application/json'
+	        },
+	        body: JSON.stringify({
+		        prompt: input,
+		        system_prompt: 'you are a friendly chat bot.'
+	        })
+        };
+        setInput("")
+        try {
+	        const response = await fetch(url, options);
+	        const result = await response.json();
+	        console.log(result.msg);
+          const data = removeMarkdownFormatters(result.msg)
+          const BotMessage = {role: 'bot', text: data}
+          setMessages((prevMessage)=>[...prevMessage, BotMessage])
+        } catch (error) {
+	        console.error(error);
+        }
     }
 
     const handleSubmit = (e)=>{
@@ -80,16 +93,10 @@ function LlamaChat(props) {
         </div>
       </div>
       <div>
-        <div className="bg-blue-300 min-h-[580px] flex-col overflow-y-auto p-5">
-          <Player src={SorryGif}
-          loop
-          autoplay
-          className="max-h-[350px] max-w-[350px]"/>
-          <h3 className="text-center font-serif text-2xl">Sorry! This function is currently unavailable will be available in coming updates. Sorry for inconvenience caused! Look out for other Agents by the time</h3>
-          <br/>
-          <a href='/BotSelection'><div className="w-[200px] bg-blue-500 text-center p-5 rounded-2xl ml-[500px] hover:cursor-pointer hover:scale-110 hover:transition hover:transform hover:duration-300 ">
-            <h3>Choose Other Agent</h3>
-          </div> </a>
+        <div className="bg-blue-300 min-h-[580px] flex-col overflow-auto p-5">
+        {messages.map((msg,index)=>{
+            return msg.role === 'user' ? <SendMsg key={index} text={msg.text} image={UserImg}/> : <RecieveMsg key={index} text={msg.text} image={BotImg}/> 
+          })}
         </div>
         <div className=" bg-gray-900 min-h-[63px]">
           <form className="flex p-3" onSubmit={handleSubmit}>

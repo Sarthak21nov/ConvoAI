@@ -14,7 +14,7 @@ import DallE from './Pages/DallE.jsx'
 import Gemini from './Pages/Gemini.jsx'
 import TranslateAi from './Pages/TranslateAi.jsx'
 import LumaAI from './Pages/LumaAI.jsx'
-import SunoAI from './Pages/SunoAI.jsx'
+
 
 
 function App() {
@@ -38,7 +38,6 @@ function App() {
               <Route path='/Gemini'element={<Gemini/>}/>
               <Route path='/Google-Translate' element={<TranslateAi/>}/>
               <Route path='/LumaAI' element={<LumaAI/>}/>
-              <Route path='/SunoAI' element={<SunoAI/>}/>
             </Routes>
           </div>
         </div>

@@ -8,7 +8,7 @@ import Dalle from '../assets/DallE.jpeg'
 import gemini from '../assets/gemini.png'
 import translate from '../assets/GoogleTranslate.png'
 import Luma from '../assets/Luma.jpeg'
-import Suno from '../assets/SunoAi.png'
+
 
 function ChatBots() {
 
@@ -27,7 +27,6 @@ function ChatBots() {
         <a href='/Gemini'><SmallCard image={gemini} name="Google Gemini" role="Conversational Chatbot with image-processing feature"/></a>
         <a href='/Google-Translate'><SmallCard image={translate} name="Google Translator" role="Language Translation Chatbot"/></a>
         <a href='/LumaAI'><SmallCard image={Luma} name="Luma AI" role="3-D image Generating Chatbot"/></a>
-        <a href='/SunoAI'><SmallCard image={Suno} name="Suno AI" role="Audio Generation Chatbot"/></a>
       </div>
     </div>
   )

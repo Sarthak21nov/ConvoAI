@@ -9,10 +9,9 @@ import Llama from '../assets/LlamaLogo.png';
 import animation_2 from '../assets/MainGif2.json';
 import gemini from '../assets/gemini.png';
 import code_llama from '../assets/CodeLLama.png';
-import SunoAi from '../assets/SunoAi.png';
 import LumaAi from '../assets/Luma.jpeg';
 import DallE from '../assets/DallE.jpeg';
-import Bing from '../assets/Bing.jpeg';
+import CoPilot from '../assets/Copilot.jpeg';
 import Translate from '../assets/GoogleTranslate.png';
 
 
@@ -25,8 +24,6 @@ function Home() {
   const gemini_description = "Gemini is Google DeepMind's advanced AI model designed for natural language understanding and reasoning. It combines large language models with reinforcement learning techniques, enabling it to perform complex tasks, generate human-like text, and improve efficiency in AI-driven applications."
 
   const codeLlama_description = "Code Llama is an AI model by Meta designed for coding-related tasks. It can understand and generate code in multiple programming languages, assist in debugging, and provide code suggestions, making it a valuable tool for developers to improve productivity and efficiency." 
-
-  const SunoAi_description = "Suno AI is a cutting-edge AI tool designed for generating speech, music, and audio. It uses advanced models to create high-quality voiceovers, background music, and realistic soundscapes, making it ideal for content creators, developers, and audio enthusiasts." 
 
   const Luma_description = "Luma AI is an innovative platform that uses AI and computer vision to create realistic 3D models and immersive environments from photos and videos. It enables users to generate lifelike 3D assets, perfect for virtual reality, gaming, and digital content creation."
 
@@ -76,10 +73,9 @@ function Home() {
             <a href="/BotSelection"><Card image={gemini} desc={gemini_description} name="Gemini AI"/></a>
             <a href="/BotSelection"><Card image={code_llama} desc={codeLlama_description} name="Code Llama"/>
             </a>
-            <a href="/BotSelection"><Card image={SunoAi} desc={SunoAi_description} name = "Suno AI"/></a>
             <a href="/BotSelection"><Card image={LumaAi} desc={Luma_description} name="Luma AI"/></a>
             <a href="/BotSelection"><Card image={DallE} desc={DallE_description} name="Dall-E"/></a>
-            <a href="/BotSelection"><Card image={Bing} desc={Bing_description} name="Bing"/></a>
+            <a href="/BotSelection"><Card image={CoPilot} desc={Bing_description} name="Bing"/></a>
             <a href="/BotSelection"><Card image={Translate} desc={Translate_description} name="Google Translate"/></a>
         </div>
       </div>

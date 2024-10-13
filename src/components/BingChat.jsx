@@ -71,11 +71,12 @@ function BingChat(props) {
         try {
 	        const response = await fetch(url, options);
           const result = await response.json()
-	        console.log(result.data.message);
+	        console.log(result);
 
           const data =  removeMarkdownFormatters(result.data.message)
           setResponse(data)
-          const BotMessage = {role: 'bot',text: data}  
+          const images = result.data.images
+          const BotMessage = {role: 'bot',text: data, image:images}  
           setMessages((prevMessage)=>[...prevMessage, BotMessage]) 
         } catch (error) {
 	        console.error(error);
@@ -103,7 +104,7 @@ function BingChat(props) {
       <div>
         <div className="bg-blue-500 min-h-[580px] flex-col overflow-y-auto p-5">
         {messages.map((msg,index)=>{
-            return msg.role === 'user' ? <SendMsg key={index} text={msg.text} image={UserImg}/> : <RecieveMsg key={index} text={msg.text} image={BotImg}/> 
+            return msg.role === 'user' ? <SendMsg key={index} text={msg.text} image={UserImg}/> : <RecieveMsg key={index} text={msg.text} image={BotImg} imageResponse={msg.image}/> 
           })}
         </div>
         <div className=" bg-gray-900 min-h-[63px]">
