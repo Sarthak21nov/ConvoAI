@@ -1,0 +1,14 @@
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-200%); 
+    }
+}
+
+.marquee {
+    display: flex;
+    animation: marquee 30s linear infinite;
+    will-change: transform;
+}

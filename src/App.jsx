@@ -24,7 +24,7 @@ function App() {
       <BrowserRouter>
         <div className='grid grid-cols-6'>
           <div className='col-span-1'><Sidebar/></div>
-          <div className='col-span-5'>
+          <div className='col-span-5 overflow-hidden'>
             <Routes>
               <Route path='/' element={<Home/>}/>
               <Route path='/about' element={<About/>}/>
