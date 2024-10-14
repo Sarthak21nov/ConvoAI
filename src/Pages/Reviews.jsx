@@ -13,8 +13,12 @@ import girlImg2 from "../assets/girl2.jpeg"
 import girlImg3 from "../assets/girl3.jpeg"
 import girlImg4 from "../assets/girl4.jpeg"
 import girlImg5 from "../assets/girl1.jpeg"
+import { useState } from "react"
+import send from "../assets/send.png"
  
 function Reviews() {
+
+  const[input, setInput] = useState("")
 
   const text1 = "ConvoAI is such a game-changer! It’s super convenient having all the best AI chatbots in one spot. The interface is really easy to use, and it’s perfect for getting quick, smart responses!"
 
@@ -31,6 +35,17 @@ function Reviews() {
   const text7 = "ConvoAI is a game-changer for productivity! It consolidates all the top chatbots, allowing me to get answers faster. The sleek design enhances the overall experience!"
 
   const text8 = "I’m really impressed with ConvoAI! It’s so convenient to have all the top AI chatbots in one location. The quick and accurate responses make it an invaluable tool for my daily tasks!"
+
+  const handleSubmit = (e)=>{
+    e.preventDefault()
+    if(!input.trim !== ""){
+      putReview()
+    }
+  }
+
+  function putReview(){
+    setInput("")
+  } 
 
   return (
     <div>
@@ -72,7 +87,31 @@ function Reviews() {
         <CommentCard2 image = {girlImg5} name="Ciara Hanna" text={text8}/>
       </div>
       <hr/>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, officia nesciunt ipsum, eaque ipsa consequuntur sapiente soluta eum aliquid, saepe excepturi unde possimus a nemo ullam incidunt repudiandae molestiae est perferendis harum? Delectus, aliquam dicta sapiente totam explicabo cumque rem.
+      {/* Review Section */}
+      <p className="text-center font-medium text-4xl m-4 pt-6">Reviews</p>
+      <div className="m-4 p-7 border-2 border-solid border-black min-h-[600px] rounded-3xl bg-red-100">
+        <div className="min-h-[500px] max-h-[500px] bg-slate-800 overflow-y-auto">
+         Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam repellat possimus iste odio eveniet itaque placeat vel soluta deserunt nemo consectetur excepturi atque eius quos fugit mollitia quae quia quas deleniti, animi harum nulla! Aliquam libero quae expedita voluptas numquam, nostrum amet. Tempore, repudiandae? Nemo distinctio velit similique commodi voluptatem sapiente repellat odio eos voluptas numquam ullam, officia saepe unde tempore repellendus nostrum. Sint in blanditiis cupiditate doloremque, delectus, dolores eius aperiam corrupti recusandae impedit non iusto rerum illo ipsam illum assumenda reprehenderit earum iste nihil quos beatae laboriosam veritatis. Nihil quis consectetur omnis asperiores accusantium? Ab soluta doloribus magnam atque recusandae ipsam, odio et, debitis ipsum omnis neque animi saepe harum quod porro molestiae fugiat provident! Nemo porro, esse expedita facere error quia libero quae tempore odio. Natus accusantium aut aperiam quis tenetur neque recusandae enim quas, ut adipisci magnam? Aliquid exercitationem commodi sapiente, a numquam eum accusantium esse quos sunt quaerat molestiae. Est aspernatur voluptatibus inventore autem similique, fugit veniam adipisci temporibus natus? Iure ex sint atque architecto est culpa commodi ullam nemo ea placeat, eum amet recusandae laudantium officiis quasi dolor eligendi adipisci cumque! Perferendis minus tenetur sed libero porro expedita voluptatum asperiores earum quia labore. Consequatur rerum praesentium quo? Praesentium illo magni sunt exercitationem delectus accusantium veniam cupiditate explicabo maxime libero. Enim, aut sit. Qui optio, praesentium sequi est aliquam facere voluptatum ipsam culpa expedita numquam, veniam perferendis et commodi. Sequi quam unde quo et consequuntur odit, quis voluptates dignissimos reprehenderit minus eaque eligendi, hic libero! Nobis inventore aliquid nisi quos aspernatur vitae. Quisquam esse ut officiis neque molestiae nostrum a itaque minus dolorum harum, illum rerum repellendus fugiat pariatur cum nobis iure aliquam cupiditate, quos maxime provident, exercitationem possimus. Assumenda, explicabo soluta aut tempora, quisquam deleniti veniam, officiis error non quos dicta voluptatem sit! Non beatae vero facere dolorem laborum fugit dolores quisquam cupiditate! Vero, voluptas eum. Similique a delectus autem asperiores quod fugiat, reprehenderit earum beatae porro perspiciatis iusto vel omnis eveniet quas. Voluptates corrupti quis tempore necessitatibus, illo nihil impedit voluptatem earum perferendis error perspiciatis tenetur officiis quod maxime debitis similique! Illo rerum aperiam pariatur? Hic possimus aperiam reprehenderit, architecto voluptatum sed ducimus atque quo in nihil, fugit repudiandae natus reiciendis dolorum quaerat laudantium optio? Dicta aut, dolores quo aliquid repudiandae libero eveniet repellat ipsam eum quibusdam in temporibus vero, voluptatibus placeat eligendi dignissimos nam. Ex magni eligendi temporibus natus itaque facilis provident dolore sunt necessitatibus, debitis minima amet nam id praesentium. At minus sit excepturi est quia provident neque tempora recusandae quis. In ab saepe a vero, unde laboriosam sunt voluptatum voluptas sed modi distinctio temporibus sapiente tempora, omnis delectus assumenda officia dolores officiis adipisci quae quo dolor ratione! Aperiam ad error dolorem rerum sunt, suscipit itaque ex natus neque consectetur nisi, nihil sequi? Accusamus inventore porro aliquid voluptas iste laudantium distinctio animi voluptate cum, asperiores blanditiis modi facere ducimus aut corporis esse minus quas voluptates necessitatibus totam nemo sed! Blanditiis natus tempore, sequi doloribus nisi impedit ad alias facilis rem maiores ipsum ipsam! Quisquam nobis, odit fugiat dolorem explicabo at blanditiis adipisci molestias molestiae voluptates nemo, recusandae iusto mollitia consequatur ipsum facilis eos! Enim modi quae architecto dolores veritatis! Ad, maxime. Culpa sunt porro aperiam magnam eveniet aut praesentium consequuntur omnis dolorem, nobis officia eligendi tenetur excepturi, accusamus quis inventore dolores nostrum harum sit ut. Excepturi repudiandae, non quos vitae recusandae sequi rem eius quia nemo minima? Commodi, qui dolorum quidem enim quae dolorem sint velit ab ratione autem porro, asperiores eaque perspiciatis laborum. Dolor nisi dignissimos dolorum perferendis maxime laboriosam, officiis aperiam cum voluptates odit, distinctio vitae amet sit, quis beatae! Aperiam repellendus iste ipsam et, obcaecati nihil iure minima modi harum culpa cumque magni ipsum alias, accusantium autem nisi repellat error. Ea nesciunt ipsum voluptatem perspiciatis sint autem voluptate in? Voluptas quos, perspiciatis porro sed sit optio harum sint aperiam inventore eum ab debitis recusandae officiis dicta nesciunt iusto obcaecati repellendus ratione a vitae quis! Reiciendis inventore ab nam facere, mollitia vel similique harum illo, tempora, dolore suscipit placeat magnam cupiditate dolor minus odio saepe. Numquam architecto delectus aut vel itaque sed, inventore maiores quas, et accusantium iste? Maxime saepe repudiandae tempora accusamus quia nulla, tempore rem earum repellat odit laboriosam commodi quisquam quis perspiciatis? Aspernatur veniam itaque laboriosam illum debitis tenetur, assumenda qui eius neque fugiat earum sunt adipisci temporibus blanditiis nesciunt. Laudantium nobis dicta doloremque! Quam vero illo itaque nemo delectus accusamus reprehenderit fuga asperiores id maxime minus recusandae, exercitationem laudantium? Id velit quisquam nesciunt commodi neque cum labore quo minus dolorem blanditiis inventore odio fuga reprehenderit quas voluptate non, aliquam facilis, exercitationem illum? Aspernatur beatae ea repellendus voluptates mollitia et repudiandae labore ab ratione ad. Eum, fugiat animi perspiciatis commodi voluptatum nulla culpa enim eos, ex accusantium nisi id. Quas incidunt at quia nesciunt facere necessitatibus eum error velit. Adipisci odio sint a laboriosam ut commodi inventore voluptatum tempora recusandae dolores eius, sunt quo blanditiis labore temporibus odit dolorum modi! Dolore enim accusantium vero facere in aut excepturi modi placeat delectus, minima, ad aspernatur. Id ipsam nostrum eligendi possimus corporis. Omnis error id nesciunt magni accusantium unde tempore impedit est temporibus provident. A nobis dolore culpa doloribus esse iure ipsam! Porro asperiores enim, magni quidem molestias eius pariatur, obcaecati corporis voluptatum aspernatur repellendus amet quam? Et aliquid iure obcaecati nisi asperiores sint, accusamus necessitatibus cum illo quidem tempora quia iste quaerat rem! Tempora repellat, illo quaerat facilis officia dolorem veniam nulla, consectetur eveniet totam modi ipsa quam ducimus. Illum labore totam quod similique explicabo vitae reiciendis quo enim! Error a officiis maxime iure quis minus vero nulla? Soluta libero ut aspernatur porro sint nihil eius laboriosam voluptates nam doloribus voluptatibus obcaecati maiores ea recusandae quis quisquam, nemo reiciendis magni ipsam molestiae beatae aliquam aperiam? Et molestias natus voluptatibus voluptate deserunt porro vero expedita veniam in optio, fuga inventore vel harum sed cum eveniet quos, dolor error, consequatur eaque culpa officiis repellat ea totam! Exercitationem vitae inventore hic ullam asperiores non, nulla atque libero fugit ipsum fuga?
+        </div>
+        <div className="h-[10%] flex">
+          <form onSubmit={handleSubmit}>
+            <input type="text" placeholder="Enter your review" value={input} onChange= {(e)=>setInput(e.target.value)} className="m-5 p-4 w-[300px] sm:w-[1100px] rounded-full"/>
+          </form>
+          <img src={send} className=" h-[50px] mt-6 hover:pointer rounded-full" onClick={putReview}/>
+        </div>
+      </div>
+      <div className="grid grid-cols-2">
+        <div className="bg-red-100 min-h-[200px] m-4 ">
+          <p className="text-3xl text-center font-bold pt-[90px]">GET IN TOUCH</p>
+        </div>
+        <div className="text-center pt-[60px] bg-slate-200 min-h-[200px] m-4">
+          <ul>
+            <li className="text-blue-600 hover:scale-110"><a href ="https://mail.google.com/mail/u/0/#inbox/FMfcgzQXJbBJMjLjtMdztPqTDdBXrsWV?compose=GTvVlcRwPkPHHNsDFdvSlgPfbPglscjZLrKHDbXHvVQbznNGKlXstkWHhTTQpjDgFjZjnDGxdmcXw">sarthak.nov21@gmail.com</a></li>
+            <li className="text-blue-600 hover:scale-110">sarthak_y.s</li>
+            <li className="text-blue-600 hover:scale-110">Sarthak_21</li>
+          </ul>
+        </div>
+      </div>
     </div>
   )
 }

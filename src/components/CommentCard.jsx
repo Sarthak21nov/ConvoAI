@@ -4,7 +4,7 @@ function CommentCard(props) {
   return (
     <div>
       <div className="min-h-[310px] bg-slate-200 min-w-[300px] m-7 rounded-2xl shadow-2xl">
-        <img src={props.image} alt="Img" className="rounded-full m-auto pt-5 h-[100px] "/>
+        <img src={props.image} alt="Img" className="rounded-full m-auto pt-5 h-[100px]" loading="lazy"/>
         <p className="text-center font-semibold">{props.name}</p>
         <div className="flex w-[30px] h-[15px] ml-[35%]">
             <img src={ratings}/>
