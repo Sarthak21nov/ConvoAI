@@ -6,6 +6,12 @@ function Login() {
     const [input, setInput] = useState("")
     const [password, setPassword] = useState("")
 
+    function checkValid(){
+      if(!input || !password){
+        alert("All fields are mandatory")
+      }
+    }
+
     const handleSubmit = (e)=>{
         e.preventDefault()
         if(!input.trim() !== ""){
@@ -14,6 +20,7 @@ function Login() {
     }
 
     function SignIn() {
+        checkValid()
         setInput("")
         setPassword("")
     }
@@ -25,8 +32,8 @@ function Login() {
             <h2 className="font-semibold text-3xl p-4 ml-3">Sign In</h2>
             <p className="font-serif pl-4 ml-3">Sign in for seamlessly using ConvoAI</p>
             <form onSubmit={handleSubmit} className="flex flex-col">
-                <input type="text" value = {input} onChange={(e)=>setInput(e.target.value)} placeholder="Email or Phone Number" className="p-4 mt-5 ml-5 shadow-2xl w-[350px]"/>
-                <input type="password" value = {password} onChange={(e)=>setPassword(e.target.value)} placeholder="Password" className="p-4 mt-5 ml-5 shadow-2xl w-[350px]"/>
+                <input type="text" value = {input} onChange={(e)=>setInput(e.target.value)} placeholder="Email or Phone Number" className="p-4 mt-5 ml-5 shadow-2xl w-[350px]" required/>
+                <input type="password" value = {password} onChange={(e)=>setPassword(e.target.value)} placeholder="Password" className="p-4 mt-5 ml-5 shadow-2xl w-[350px]" required/>
                 <a href="/forget"><p className="text-blue-700 ml-2 p-3">Forget Password?</p></a>
                 <div className="m-auto bg-slate-800 text-white pt-2 pb-2 pl-8 pr-8 rounded-2xl mt-5 hover:cursor-pointer shadow-2xl hover:transition hover:transform hover:duration-500 hover:scale-110" onClick={SignIn}>
                     <p>Login</p>
