@@ -9,7 +9,7 @@ function SignUp() {
   const [Phone, setPhone] = useState("") 
   const [checked, setChecked] = useState(false)
 
-  function SignUp (){
+  function Sign_Up (){
     checkError()
     setInput("")
     setPassword("")
@@ -21,7 +21,7 @@ function SignUp() {
   const handleSubmit = (e)=>{
     e.preventDefault()
     if(!input!==""){
-        SignUp()
+      SignUp()
     }
   }
 
@@ -49,7 +49,7 @@ function SignUp() {
                     <div className="flex ml-2">
                         <input type="checkbox" value={checked} onChange={handleCheckbox} className="p-4 mt-1 ml-4 mb-2 mr-2 shadow-2xl" required/> Agree to our terms and conditions <a href='#' className="text-blue-800">T&C</a>
                     </div>
-                    <div className="m-auto bg-slate-800 text-white pt-2 pb-2 pl-8 pr-8 rounded-2xl mt-3 hover:cursor-pointer shadow-2xl hover:transition hover:transform hover:duration-500 hover:scale-110" onClick={SignUp}>
+                    <div className="m-auto bg-slate-800 text-white pt-2 pb-2 pl-8 pr-8 rounded-2xl mt-3 hover:cursor-pointer shadow-2xl hover:transition hover:transform hover:duration-500 hover:scale-110" onClick={Sign_Up}>
                         <p>Sign Up</p>
                     </div>
                 </form>

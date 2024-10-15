@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import './App.css'
 import Sidebar from './components/Sidebar.jsx'
 import './index.css'
@@ -16,6 +17,9 @@ import TranslateAi from './Pages/TranslateAi.jsx'
 import LumaAI from './Pages/LumaAI.jsx'
 import Login from './Pages/Login.jsx'
 import SignUp from './Pages/SignUp.jsx'
+import Forget from './Pages/forget.jsx'
+import ChangePassword from './Pages/ChangePassword.jsx'
+import Verification from './Pages/verification.jsx'
 
 
 
@@ -42,7 +46,9 @@ function App() {
               <Route path='/LumaAI' element={<LumaAI/>}/>
               <Route path='/login' element={<Login/>}/>
               <Route path='/SignUp' element={<SignUp/>}/>
-              <Route path='/forget'/>
+              <Route path='/forget' element={<Forget/>}/>
+              <Route path='/changePassword' element={<ChangePassword/>}/>
+              <Route path='/verification' element={<Verification/>}/>
             </Routes>
           </div>
         </div>
