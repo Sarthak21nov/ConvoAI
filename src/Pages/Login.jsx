@@ -1,10 +1,13 @@
+import axios from "axios"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 
 function Login() {
 
     const [input, setInput] = useState("")
     const [password, setPassword] = useState("")
+    const navigate = useNavigate();
 
     function checkValid(){
       if(!input || !password){
@@ -19,8 +22,19 @@ function Login() {
         }
     }
 
-    function SignIn() {
+    async function SignIn() {
         checkValid()
+        try{
+          const response = await axios.post('http://localhost:5000/api/auth/login', {
+            input,
+            password
+          })
+          console.log(response.message)
+          navigate('/')
+          localStorage.setItem('authKey', response.token)
+        } catch(err){
+          console.log("An error occurred while login", err)
+        }
         setInput("")
         setPassword("")
     }
@@ -32,7 +46,7 @@ function Login() {
             <h2 className="font-semibold text-3xl p-4 ml-3">Sign In</h2>
             <p className="font-serif pl-4 ml-3">Sign in for seamlessly using ConvoAI</p>
             <form onSubmit={handleSubmit} className="flex flex-col">
-                <input type="text" value = {input} onChange={(e)=>setInput(e.target.value)} placeholder="Email or Phone Number" className="p-4 mt-5 ml-5 shadow-2xl w-[350px]" required/>
+                <input type="text" value = {input} onChange={(e)=>setInput(e.target.value)} placeholder="Email" className="p-4 mt-5 ml-5 shadow-2xl w-[350px]" required/>
                 <input type="password" value = {password} onChange={(e)=>setPassword(e.target.value)} placeholder="Password" className="p-4 mt-5 ml-5 shadow-2xl w-[350px]" required/>
                 <a href="/forget"><p className="text-blue-700 ml-2 p-3">Forget Password?</p></a>
                 <div className="m-auto bg-slate-800 text-white pt-2 pb-2 pl-8 pr-8 rounded-2xl mt-5 hover:cursor-pointer shadow-2xl hover:transition hover:transform hover:duration-500 hover:scale-110" onClick={SignIn}>
