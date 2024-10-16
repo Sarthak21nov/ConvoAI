@@ -12,31 +12,37 @@ function Login() {
     function checkValid(){
       if(!input || !password){
         alert("All fields are mandatory")
+        return false
       }
+      return true
     }
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = async (e)=>{
         e.preventDefault()
-        if(!input.trim() !== ""){
-            SignIn()
+        if(checkValid()){
+          try{
+            const Email = input
+            const Password = password
+            const response = await axios.post('http://localhost:5000/api/auth/login',{
+              Email,
+              Password
+            })
+            const {status, message, token} = response.data
+            console.log(`Status = ${status}`)
+            console.log(`Message = ${message}`)
+            console.log(`Token = ${token}`)
+            if(status){
+              alert("Logged In Successfully")
+              localStorage.setItem('authToken', token)
+              navigate('/')
+            } else{
+              alert(message)
+            }
+          } catch(err){
+            console.log(err)
+            alert("An Error Occurred")
+          }
         }
-    }
-
-    async function SignIn() {
-        checkValid()
-        try{
-          const response = await axios.post('http://localhost:5000/api/auth/login', {
-            input,
-            password
-          })
-          console.log(response.message)
-          navigate('/')
-          localStorage.setItem('authKey', response.token)
-        } catch(err){
-          console.log("An error occurred while login", err)
-        }
-        setInput("")
-        setPassword("")
     }
 
   return (
@@ -49,7 +55,7 @@ function Login() {
                 <input type="text" value = {input} onChange={(e)=>setInput(e.target.value)} placeholder="Email" className="p-4 mt-5 ml-5 shadow-2xl w-[350px]" required/>
                 <input type="password" value = {password} onChange={(e)=>setPassword(e.target.value)} placeholder="Password" className="p-4 mt-5 ml-5 shadow-2xl w-[350px]" required/>
                 <a href="/forget"><p className="text-blue-700 ml-2 p-3">Forget Password?</p></a>
-                <div className="m-auto bg-slate-800 text-white pt-2 pb-2 pl-8 pr-8 rounded-2xl mt-5 hover:cursor-pointer shadow-2xl hover:transition hover:transform hover:duration-500 hover:scale-110" onClick={SignIn}>
+                <div className="m-auto bg-slate-800 text-white pt-2 pb-2 pl-8 pr-8 rounded-2xl mt-5 hover:cursor-pointer shadow-2xl hover:transition hover:transform hover:duration-500 hover:scale-110" onClick={handleSubmit}>
                     <p>Login</p>
                 </div>
             </form>

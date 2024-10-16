@@ -1,4 +1,6 @@
+import axios from "axios"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 
 function SignUp() {
@@ -7,32 +9,45 @@ function SignUp() {
   const [password, setPassword] = useState("") 
   const [Email, setEmail] = useState("")
   const [Phone, setPhone] = useState("") 
-  const [checked, setChecked] = useState(false)
+  const navigate = useNavigate()
 
-  function Sign_Up (){
-    checkError()
-    setInput("")
-    setPassword("")
-    setEmail("")
-    setPhone("")
-    setChecked(false)
-  }  
-
-  const handleSubmit = (e)=>{
+  const handleSubmit = async (e)=>{
+    const Name = input
+    const Password = password
+    const PhoneNumber = Phone
     e.preventDefault()
-    if(!input!==""){
-      SignUp()
+    if(checkError()){
+      try{
+        const response = await axios.post('http://localhost:5000/api/auth/register',{
+          Name,
+          Email,
+          PhoneNumber,
+          Password
+        })
+        const {status, message} = response.data
+        console.log(`Status: ${status}`)
+        console.log(`Message: ${message}`)
+        if(status){
+          alert("Registered Successfully")
+          navigate('/login')
+        } else{
+          alert(message)
+        }
+      } catch (err){
+          console.log(err)
+          alert("Unable to Sign In! Server Issue please try after sometime")
+      }
     }
+    
   }
 
-  const handleCheckbox = ()=>{
-    setChecked(!checked)
-  } 
 
   const checkError = ()=>{
-    if(!input || !password || !Email || !Phone || checked){
+    if(!input || !password || !Email || !Phone){
       alert("All fields are mandatory")
+      return false
     }
+    return true
   }
 
   return (
@@ -47,9 +62,9 @@ function SignUp() {
                     <input type="text" placeholder="Phone Number" value={Phone} onChange={(e)=>setPhone(e.target.value)} className="p-4 mt-1 ml-4 mb-2 w-[350px] shadow-2xl" required/>
                     <input type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} className="p-4 mt-1 ml-4 mb-2 w-[350px] shadow-2xl" required/>
                     <div className="flex ml-2">
-                        <input type="checkbox" value={checked} onChange={handleCheckbox} className="p-4 mt-1 ml-4 mb-2 mr-2 shadow-2xl" required/> Agree to our terms and conditions <a href='#' className="text-blue-800">T&C</a>
+                        <input type="checkbox" className="p-4 mt-1 ml-4 mb-2 mr-2 shadow-2xl" required/> Agree to our terms and conditions <a href='#' className="text-blue-800">T&C</a>
                     </div>
-                    <div className="m-auto bg-slate-800 text-white pt-2 pb-2 pl-8 pr-8 rounded-2xl mt-3 hover:cursor-pointer shadow-2xl hover:transition hover:transform hover:duration-500 hover:scale-110" onClick={Sign_Up}>
+                    <div className="m-auto bg-slate-800 text-white pt-2 pb-2 pl-8 pr-8 rounded-2xl mt-3 hover:cursor-pointer shadow-2xl hover:transition hover:transform hover:duration-500 hover:scale-110" onClick={handleSubmit}>
                         <p>Sign Up</p>
                     </div>
                 </form>
