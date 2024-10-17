@@ -54,7 +54,7 @@ function Login() {
             <form onSubmit={handleSubmit} className="flex flex-col">
                 <input type="text" value = {input} onChange={(e)=>setInput(e.target.value)} placeholder="Email" className="p-4 mt-5 ml-5 shadow-2xl w-[350px]" required/>
                 <input type="password" value = {password} onChange={(e)=>setPassword(e.target.value)} placeholder="Password" className="p-4 mt-5 ml-5 shadow-2xl w-[350px]" required/>
-                <a href="/forget"><p className="text-blue-700 ml-2 p-3">Forget Password?</p></a>
+                <p className="text-blue-700 ml-2 p-3">Forget Password?</p>
                 <div className="m-auto bg-slate-800 text-white pt-2 pb-2 pl-8 pr-8 rounded-2xl mt-5 hover:cursor-pointer shadow-2xl hover:transition hover:transform hover:duration-500 hover:scale-110" onClick={handleSubmit}>
                     <p>Login</p>
                 </div>

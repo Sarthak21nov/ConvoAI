@@ -19,7 +19,7 @@ import Login from './Pages/Login.jsx'
 import SignUp from './Pages/SignUp.jsx'
 import Forget from './Pages/forget.jsx'
 import ChangePassword from './Pages/ChangePassword.jsx'
-import Verification from './Pages/verification.jsx'
+import Verification from './Pages/Verification.jsx'
 
 
 
@@ -46,9 +46,9 @@ function App() {
               <Route path='/LumaAI' element={<LumaAI/>}/>
               <Route path='/login' element={<Login/>}/>
               <Route path='/SignUp' element={<SignUp/>}/>
-              <Route path='/forget' element={<Forget/>}/>
+              {/* <Route path='/forget' element={<Forget/>}/>
               <Route path='/changePassword' element={<ChangePassword/>}/>
-              <Route path='/verification' element={<Verification/>}/>
+              <Route path='/verification' element={<Verification/>}/> */}
             </Routes>
           </div>
         </div>
