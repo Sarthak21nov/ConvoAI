@@ -12,6 +12,8 @@ export const getAllReviews = async (req,res)=>{
 }
 
 export const putReview = async (req,res)=>{
+
+    // Add Name Parameter here to get the name when showing on frontend
     try{
         const {User_Review, Date, Month, Year} = req.body
         if(!User_Review || !Date || !Month || !Year) {

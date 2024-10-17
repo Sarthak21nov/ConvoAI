@@ -38,6 +38,12 @@ function Reviews() {
   const text8 = "I’m really impressed with ConvoAI! It’s so convenient to have all the top AI chatbots in one location. The quick and accurate responses make it an invaluable tool for my daily tasks!"
 
 
+  const Name = localStorage.getItem('userName')
+  const d = new Date()
+  const date = d.getDate()
+  const MonthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  const Month = MonthArray[d.getMonth() + 1 ]
+  const Year = d.getFullYear()
 
   const handleSubmit = (e)=>{
     e.preventDefault()
@@ -45,7 +51,7 @@ function Reviews() {
   } 
 
 
-  
+
   return (
     <div>
       <div>
@@ -86,11 +92,12 @@ function Reviews() {
         <CommentCard2 image = {girlImg5} name="Ciara Hanna" text={text8}/>
       </div>
       <hr/>
+
       {/* Review Section */}
       <p className="text-center font-medium text-4xl m-4 pt-6">Reviews</p>
       <div className="m-4 p-7 border-2 border-solid border-black min-h-[600px] rounded-3xl bg-red-100">
         <div className="min-h-[500px] max-h-[500px] bg-slate-800 overflow-y-auto">
-         <ReviewMsg/>
+         <ReviewMsg name = {Name} date = {date} month = {Month} year = {Year}/>
         </div>
         <div className="h-[10%] flex">
           <form onSubmit={handleSubmit}>
@@ -99,6 +106,7 @@ function Reviews() {
           <img src={send} className=" h-[50px] mt-6 hover:pointer rounded-full" onClick={handleSubmit}/>
         </div>
       </div>
+
       <div className="grid grid-cols-2">
         <div className="bg-red-100 min-h-[200px] m-4 ">
           <p className="text-3xl text-center font-bold pt-[90px]">GET IN TOUCH</p>

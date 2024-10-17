@@ -27,13 +27,15 @@ function Login() {
               Email,
               Password
             })
-            const {status, message, token} = response.data
+            const {status, message, token, userData} = response.data
             console.log(`Status = ${status}`)
             console.log(`Message = ${message}`)
             console.log(`Token = ${token}`)
+            console.log(`Data = ${userData.Name}`)
             if(status){
               alert("Logged In Successfully")
               localStorage.setItem('authToken', token)
+              localStorage.setItem('userName', userData.Name)
               navigate('/')
             } else{
               alert(message)
