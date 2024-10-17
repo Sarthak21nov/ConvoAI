@@ -1,6 +1,8 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import User from "../Models/User.js"
 import bcrypt from "bcrypt" 
+import axios from "axios"
 
 let otpMap = new Map()
 
@@ -34,7 +36,7 @@ export const VerifyOTP = async (req,res)=>{
         const hashedPassword = await bcrypt.hash(Password, 10)
         const user = await User({Name, Email, PhoneNumber, hashedPassword})
         await user.save()
-        
+
         res.json({status: true, message:"Registration Complete Successfully"})
     } else{
         res.json({status: false, message: "INVALID OTP Found"})
