@@ -29,8 +29,8 @@ function SignUp() {
         console.log(`Message: ${message}`)
         if(status){
           localStorage.setItem('Email', Email)
-          alert("An OTP is sent to your Email For verification")
-          navigate('/verification')
+          alert(message)
+          navigate('/login')
         } else{
           alert(message)
         }

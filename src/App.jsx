@@ -48,7 +48,7 @@ function App() {
               <Route path='/SignUp' element={<SignUp/>}/>
               {/* <Route path='/forget' element={<Forget/>}/>
               <Route path='/changePassword' element={<ChangePassword/>}/> */}
-              <Route path='/verification' element={<Verification/>}/>
+              {/* <Route path='/verification' element={<Verification/>}/> */}
             </Routes>
           </div>
         </div>
