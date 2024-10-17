@@ -11,20 +11,11 @@ function SignUp() {
   const [Phone, setPhone] = useState("") 
   const navigate = useNavigate()
 
-  const GenerateOTP = ()=>{
-    const OTP = Math.floor(Math.random() * 9000) + 1000
-    return OTP
-  }
-
   const handleSubmit = async (e)=>{
     const Name = input
     const Password = password
     const PhoneNumber = Phone
     e.preventDefault()
-    localStorage.setItem('Email',Email)
-    const otp = GenerateOTP()
-    localStorage.setItem('OTP', otp)
-    navigate('/verification')
     if(checkError()){
       try{
         const response = await axios.post('http://localhost:5000/api/auth/register',{
@@ -37,8 +28,9 @@ function SignUp() {
         console.log(`Status: ${status}`)
         console.log(`Message: ${message}`)
         if(status){
-          alert("Registered Successfully")
-          navigate('/login')
+          localStorage.setItem('Email', Email)
+          alert("An OTP is sent to your Email For verification")
+          navigate('/verification')
         } else{
           alert(message)
         }
