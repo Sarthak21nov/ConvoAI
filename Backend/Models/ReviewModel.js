@@ -16,6 +16,10 @@ const ReviewSchema = new mongoose.Schema({
     Year: {
         type: "Number",
         required: true
+    },
+    Name: {
+        type: "String",
+        required: true
     }
 })
 const Review = mongoose.model('Review', ReviewSchema)

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 import { Player } from "@lottiefiles/react-lottie-player"
 import Navbar from "../components/Navbar"
@@ -13,13 +14,23 @@ import girlImg2 from "../assets/girl2.jpeg"
 import girlImg3 from "../assets/girl3.jpeg"
 import girlImg4 from "../assets/girl4.jpeg"
 import girlImg5 from "../assets/girl1.jpeg"
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import send from "../assets/send.png"
 import ReviewMsg from "../components/ReviewMsg"
- 
+import axios from "axios"
+
 function Reviews() {
 
-  const[input, setInput] = useState("")
+  const [input, setInput] = useState("")
+  const [Message, setMessage] = useState([])
+
+  useEffect(()=>{
+    fetchReview()
+  }, [])
+
+  useEffect(()=>{
+    console.log(Message)
+  }, [Message])
 
   const text1 = "ConvoAI is such a game-changer! It’s super convenient having all the best AI chatbots in one spot. The interface is really easy to use, and it’s perfect for getting quick, smart responses!"
 
@@ -42,13 +53,37 @@ function Reviews() {
   const d = new Date()
   const date = d.getDate()
   const MonthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-  const Month = MonthArray[d.getMonth() + 1 ]
+  const Month = MonthArray[d.getMonth()]
   const Year = d.getFullYear()
 
-  const handleSubmit = (e)=>{
+  const handleSubmit = async (e)=>{
     e.preventDefault()
+    try{
+      const postReview = await axios.post('http://localhost:5000/api/review/putReview', {
+        User_Review: input,
+        Date: date,
+        Month: Month,
+        Year: Year,
+        Name: Name
+      }) 
+      setInput("")
+      console.log(`Message: ${postReview.data.message}`)
+      fetchReview()
+    } catch(err){
+      alert("Error occurred while posting")
+      console.log(err)
+    }
     
   } 
+
+  const fetchReview = async ()=>{
+    try{
+      const getReviews = await axios.get('http://localhost:5000/api/review/getAllReviews')
+      setMessage(getReviews.data.data)
+    } catch(err){
+      console.log("Unable to fetch all the reviews")
+    }
+  }
 
 
 
@@ -95,15 +130,17 @@ function Reviews() {
 
       {/* Review Section */}
       <p className="text-center font-medium text-4xl m-4 pt-6">Reviews</p>
-      <div className="m-4 p-7 border-2 border-solid border-black min-h-[600px] rounded-3xl bg-red-100">
-        <div className="min-h-[500px] max-h-[500px] bg-slate-800 overflow-y-auto">
-         <ReviewMsg name = {Name} date = {date} month = {Month} year = {Year}/>
+      <div className="m-4 p-7 border-2 border-solid border-black min-h-[600px] rounded-3xl bg-gray-200">
+        <div className="min-h-[500px] max-h-[500px] bg-red-200 overflow-y-auto rounded-2xl">
+         {Message.map((msg,index)=>{
+          return <ReviewMsg name={msg.Name} date={msg.Date} month={msg.Month} year={msg.Year} key={index}     review = {msg.ReviewMessage} />
+         })}
         </div>
         <div className="h-[10%] flex">
           <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="Enter your review" value={input} onChange= {(e)=>setInput(e.target.value)} className="m-5 p-4 w-[300px] sm:w-[1100px] rounded-full"/>
+            <input type="textarea" placeholder="Enter your review" value={input} onChange= {(e)=>setInput(e.target.value)} className="m-5 p-4 w-[300px] sm:w-[1100px] rounded-full"/>
           </form>
-          <img src={send} className=" h-[50px] mt-6 hover:pointer rounded-full" onClick={handleSubmit}/>
+          <img src={send} className=" h-[50px] mt-6 hover:cursor-pointer rounded-full" onClick={handleSubmit}/>
         </div>
       </div>
 

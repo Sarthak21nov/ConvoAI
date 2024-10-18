@@ -5,11 +5,11 @@
 function ReviewMsg(props) {
   return (
     <div>
-        <div className="min-h-[50px] p-4 bg-slate-200 m-4 rounded-2xl">
+        <div className="min-h-[50px] p-4 bg-white m-4 rounded-2xl">
             <div className="flex">
-                <p>{props.name}: Posted On {props.date} {props.month} {props.year}</p>
+                <p><b>{props.name}: Posted on {props.date} {props.month} {props.year}</b></p>
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde voluptas quibusdam error ipsam doloremque, deserunt provident possimus velit amet. Saepe nulla tempora qui veniam soluta illo molestiae eligendi, dolores dolore fugit delectus? Quis distinctio saepe eligendi, ducimus quidem vel facere?</p>
+            <p>{props.review}</p>
         </div>
     </div>
   )
