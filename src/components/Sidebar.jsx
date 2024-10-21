@@ -7,7 +7,7 @@ import Cookies from "js-cookie"
 function Sidebar() {
 
   const [isLoggedIn, setLogin] = useState("Log In")
-  // <Link to='/login'><li className="m-5 p-4 text-center hover:bg-slate-400 hover:text-black cursor-pointer hover:scale-110 transition transform duration-300 rounded-lg">Login</li></Link>
+  
 
   useEffect(()=>{
     async function checkLogIn(){
@@ -27,7 +27,11 @@ function Sidebar() {
   }, [])
 
   const handleLogout = ()=>{
-
+    const sendToken = Cookies.get('authToken')
+    Cookies.remove(sendToken)
+    setLogin("Log In")
+    localStorage.getItem('userName')
+    alert("Logged Out Successfully")
   }
 
   return (
@@ -41,7 +45,7 @@ function Sidebar() {
             {isLoggedIn === 'Log In' ? (
               <Link to='/login'><li className="m-5 p-4 text-center hover:bg-slate-400 hover:text-black cursor-pointer hover:scale-110 transition transform duration-300 rounded-lg">Login</li></Link>
             ) : (
-              <li className="m-5 p-4 text-center hover:bg-slate-400 hover:text-black cursor-pointer hover:scale-110 transition transform duration-300 rounded-lg">{isLoggedIn}</li>
+              <li className="m-5 p-4 text-center hover:bg-slate-400 hover:text-black cursor-pointer hover:scale-110 transition transform duration-300 rounded-lg" onClick={handleLogout}>{isLoggedIn}</li>
             )}
              
         </ul>

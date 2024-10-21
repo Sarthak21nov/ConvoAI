@@ -18,11 +18,14 @@ import { useState, useEffect, useRef } from "react"
 import send from "../assets/send.png"
 import ReviewMsg from "../components/ReviewMsg"
 import axios from "axios"
+import Cookies from "js-cookie"
+import { useNavigate } from "react-router-dom"
 
 function Reviews() {
 
   const [input, setInput] = useState("")
   const [Message, setMessage] = useState([])
+  const navigate = useNavigate()
 
   useEffect(()=>{
     fetchReview()
@@ -56,8 +59,25 @@ function Reviews() {
   const Month = MonthArray[d.getMonth()]
   const Year = d.getFullYear()
 
+  const userLoggedIn = ()=>{
+    const cookie = Cookies.get('authToken')
+    console.log(cookie)
+    if(cookie){
+      return true
+    } else{
+      alert("You need to be logged in before posting any review")
+      navigate("/login")
+      return false
+    }
+  }
+
+  // Modify the review section if user is not logged in it. He or she should not log in first then only review can be posted.
+
   const handleSubmit = async (e)=>{
     e.preventDefault()
+    if(!userLoggedIn()){
+      return
+    }
     try{
       const postReview = await axios.post('http://localhost:5000/api/review/putReview', {
         User_Review: input,
@@ -73,7 +93,6 @@ function Reviews() {
       alert("Error occurred while posting")
       console.log(err)
     }
-    
   } 
 
   const fetchReview = async ()=>{

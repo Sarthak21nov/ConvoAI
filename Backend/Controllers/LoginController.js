@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
 import User from "../Models/User.js"
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
@@ -49,3 +48,4 @@ export const VerifyToken = (req,res)=>{
     }
     
 }
+
