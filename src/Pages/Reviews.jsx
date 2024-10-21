@@ -130,8 +130,8 @@ function Reviews() {
 
       {/* Review Section */}
       <p className="text-center font-medium text-4xl m-4 pt-6">Reviews</p>
-      <div className="m-4 p-7 border-2 border-solid border-black min-h-[600px] rounded-3xl bg-gray-200">
-        <div className="min-h-[500px] max-h-[500px] bg-red-200 overflow-y-auto rounded-2xl">
+      <div className="m-4 p-7 border-2 border-solid border-black min-h-[600px] rounded-3xl bg-black">
+        <div className="min-h-[500px] max-h-[500px]  overflow-y-auto rounded-2xl">
          {Message.map((msg,index)=>{
           return <ReviewMsg name={msg.Name} date={msg.Date} month={msg.Month} year={msg.Year} key={index}     review = {msg.ReviewMessage} />
          })}

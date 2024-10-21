@@ -1,5 +1,8 @@
+/* eslint-disable no-unused-vars */
 import { Link } from "react-router-dom"
+
 function Sidebar() {
+
   return (
     <div>
       <div className="grid w-1/6 sm:grid-cols-1 bg-gray-900 h-full fixed overflow-hidden">

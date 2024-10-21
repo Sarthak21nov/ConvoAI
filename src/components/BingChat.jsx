@@ -14,6 +14,7 @@ function BingChat(props) {
     const [response, setResponse] = useState("")
     const [messages, setMessages] = useState([])
 
+
     function removeMarkdownFormatters(markdown) {
       // Define regex patterns for various Markdown formatters
       const patterns = [

@@ -33,3 +33,20 @@ export const Login = async (req,res)=>{
         res.json({status: false, message: "An Error Occurred while login"})
     }
 }
+
+export const VerifyToken = (req,res)=>{
+    const Token = req.cookies.authToken;
+
+    if(!Token){
+        return res.json({status: false, message: "Unable to recieve token"})
+    }
+
+    try{ 
+
+        const decoded = jwt.verify(Token, process.env.JWT_TOKEN)
+        return res.json({status: true, message: "Token Identified Correctly."})
+    } catch(err){
+        return res.json({status: false, message: "Correct token not found", data: decoded})
+    }
+    
+}
