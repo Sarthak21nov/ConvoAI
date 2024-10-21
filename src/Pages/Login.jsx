@@ -2,6 +2,7 @@
 import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import Cookies from "js-cookie"
 
 
 function Login() {
@@ -35,6 +36,7 @@ function Login() {
             if(status){
               alert("Logged In Successfully")
               // localStorage.setItem('authToken', token)
+              Cookies.set('authToken', token, {secure: true, sameSite: 'Strict'})
               localStorage.setItem('userName', userData.Name)
               navigate('/')
             } else{

@@ -8,6 +8,6 @@ const app = express.Router()
 app.post('/login', Login)
 app.post('/register', Register)
 app.put('/forget', ForgetPassWord)
-app.get('/verifyToken', VerifyToken)
+app.post('/verifyToken', VerifyToken)
 
 export default app

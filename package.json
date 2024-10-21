@@ -15,6 +15,7 @@
     "axios": "^1.7.7",
     "font-awesome": "^4.7.0",
     "groq-sdk": "^0.7.0",
+    "js-cookie": "^3.0.5",
     "llamaai": "^1.0.4",
     "lottie-react": "^2.4.0",
     "openai": "^4.67.3",
