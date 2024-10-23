@@ -78,6 +78,10 @@ function Reviews() {
     if(!userLoggedIn()){
       return
     }
+    if(!Name || !date || !Month || !Year){
+      alert("Please login in before posting the review")
+      navigate("/login")
+    }
     try{
       const postReview = await axios.post('http://localhost:5000/api/review/putReview', {
         User_Review: input,
