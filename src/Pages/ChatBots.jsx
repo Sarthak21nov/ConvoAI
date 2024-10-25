@@ -1,4 +1,4 @@
-import Navbar from '../components/Navbar.jsx'
+//import Navbar from '../components/Navbar.jsx'
 import SmallCard from '../components/SmallCard.jsx'
 import chatgpt from '../assets/chatgpt.png'
 import Llama from '../assets/llamaLogo.png'
@@ -14,7 +14,6 @@ function ChatBots() {
 
   return (
     <div>
-      <Navbar/>
       <div className="text-center">
         <h3 className="text-5xl p-5 pt-12 font-serif text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-pink-600 to-violet-600">Select an AI Engine</h3>
       </div>

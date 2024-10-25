@@ -35,9 +35,9 @@ function Home() {
 
   return (
     <div>
-      <Navbar/>
+      {/* <Navbar/> */}
       <div className="min-h-[300px]">
-        <div className="flex ">
+        <div className="flex flex-wrap">
           <h2 className="text-4xl font-semibold p-10 font-poppins-bold-italic w-full h-[100%] text-center font-mono text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-pink-600 to-purple-600">YOUR ONE STOP LOCATION FOR ALL AI MODELS.
             <br/>
             <br/>
@@ -59,13 +59,13 @@ function Home() {
           <br/>
           Additionally, Convo.AI prioritizes user privacy and data security, ensuring that all interactions remain confidential. By continually updating and refining its chatbot offerings, the platform stays at the forefront of AI technology, making it a go-to destination for anyone seeking intelligent, conversational AI solutions. With Convo.AI, users can explore a world of possibilities where artificial intelligence enhances communication and problem-solving across various domains.</p>
         </div>
-        <div className='flex w-[100%] h-[400px]'>
+        <div className='flex w-[100%] flex-wrap'>
           <Player 
           src={animation_2} 
           loop
           autoplay
-          className='w-[60%] h-[100%] p-7'/>
-          <h1 className='text-4xl p-20 text-left w-[40%] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-pink-600 to-purple-600'>Select from Multiple AI models present across the Web based on your requirements</h1>
+          className='w-[60%] p-7'/>
+          <h1 className='text-4xl p-20 text-left w-[100%] font-semibold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-pink-600 to-purple-600'>Select from Multiple AI models present across the Web based on your requirements</h1>
         </div>
         <div className='inline-flex justify-evenly flex-wrap'>
             <a href="/BotSelection"><Card image={chatgpt} desc={chatgpt_description} name="ChatGPT"/></a>

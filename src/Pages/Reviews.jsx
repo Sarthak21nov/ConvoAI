@@ -20,6 +20,9 @@ import ReviewMsg from "../components/ReviewMsg"
 import axios from "axios"
 import Cookies from "js-cookie"
 import { useNavigate } from "react-router-dom"
+import mail from "../assets/email.png"
+import instagram from "../assets/instagram.png"
+import twitter from "../assets/twitter.png"
 
 function Reviews() {
 
@@ -113,12 +116,12 @@ function Reviews() {
   return (
     <div>
       <div>
-        <Navbar/>
+        {/* <Navbar/> */}
       </div>
       <div className="text-center p-5 font-semibold text-3xl bg-red-100">
         <p>Welcome to Communication Forum</p>
       </div>
-      <div className="grid grid-cols-2 p-5 bg-red-100">
+      <div className="sm:grid sm:grid-cols-2 p-5 bg-red-100 flex flex-wrap">
         <p className="font-serif">Welcome to our Discussion Forum, a dedicated space for users to engage, share ideas, and provide valuable feedback about their experience on our platform. Whether you're here to offer suggestions, leave a review, or seek assistance from our development team, this forum serves as an open channel for collaboration and connection. <br/>
 
         <b>Suggestions & Ideas:</b>
@@ -167,16 +170,29 @@ function Reviews() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2">
+      <div className="sm:grid sm:grid-cols-2 flex flex-col">
         <div className="bg-red-100 min-h-[200px] m-4 ">
-          <p className="text-3xl text-center font-bold pt-[90px]">GET IN TOUCH</p>
+          <p className="text-3xl text-center font-bold pt-[80px]">GET IN TOUCH</p>
         </div>
-        <div className="text-center pt-[60px] bg-slate-200 min-h-[200px] m-4">
-          <ul>
-            <li className="text-blue-600 hover:scale-110"><a href ="https://mail.google.com/mail/u/0/#inbox/FMfcgzQXJbBJMjLjtMdztPqTDdBXrsWV?compose=GTvVlcRwPkPHHNsDFdvSlgPfbPglscjZLrKHDbXHvVQbznNGKlXstkWHhTTQpjDgFjZjnDGxdmcXw">sarthak.nov21@gmail.com</a></li>
-            <li className="text-blue-600 hover:scale-110">sarthak_y.s</li>
-            <li className="text-blue-600 hover:scale-110">Sarthak_21</li>
-          </ul>
+        <div className="text-center bg-slate-200 min-h-[200px] m-4 flex justify-center items-center flex-col">
+          <a href=''>
+            <div className="flex hover:cursor-pointer m-2">
+              <img src={mail} className="min-w-[20px] max-w-[20px]"/>
+              <p className="hover:text-blue-700"> : sarthak.nov21@gmail.com</p>
+            </div>
+          </a>
+          <a href=''>
+            <div className="flex hover:cursor-pointer m-2">
+              <img src={instagram} className="min-w-[20px] max-w-[20px]"/>
+              <p className="hover:text-blue-700"> : sarthak_y.s</p>
+            </div>
+          </a>
+          <a href=''>
+            <div className="flex hover:cursor-pointer m-2">
+              <img src={twitter} className="min-w-[20px] max-w-[20px]"/>
+              <p className="hover:text-blue-700"> : @sarthak21</p>
+            </div>
+          </a>
         </div>
       </div>
     </div>

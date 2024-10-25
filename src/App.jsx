@@ -20,6 +20,7 @@ import SignUp from './Pages/SignUp.jsx'
 import Forget from './Pages/forget.jsx'
 import ChangePassword from './Pages/ChangePassword.jsx'
 import Verification from './Pages/Verification.jsx'
+import Navbar from './components/Navbar.jsx'
 
 
 
@@ -27,10 +28,11 @@ function App() {
 
   return (
     <div>
+      <Navbar />
       <BrowserRouter>
-        <div className='grid grid-cols-6'>
-          <div className='col-span-1'><Sidebar/></div>
-          <div className='col-span-5 overflow-hidden'>
+        <div className='sm:grid sm:grid-cols-6 overflow-x-hidden overflow-y-auto pt-[70px]'>
+          <div className='sm:col-span-1 sm:block hidden'><Sidebar/></div>
+          <div className='sm:col-span-5 sm:overflow-hidden'>
             <Routes>
               <Route path='/' element={<Home/>}/>
               <Route path='/about' element={<About/>}/>
