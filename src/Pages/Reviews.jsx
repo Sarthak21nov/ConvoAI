@@ -156,17 +156,17 @@ function Reviews() {
 
       {/* Review Section */}
       <p className="text-center font-medium text-4xl m-4 pt-6">Reviews</p>
-      <div className="m-4 p-7 border-2 border-solid border-black min-h-[600px] rounded-3xl bg-black">
+      <div className="m-4 p-3 border-2 border-solid border-black min-h-[600px] rounded-3xl bg-black">
         <div className="min-h-[500px] max-h-[500px]  overflow-y-auto rounded-2xl">
          {Message.map((msg,index)=>{
           return <ReviewMsg name={msg.Name} date={msg.Date} month={msg.Month} year={msg.Year} key={index}     review = {msg.ReviewMessage} />
          })}
         </div>
-        <div className="h-[10%] flex">
-          <form onSubmit={handleSubmit}>
-            <input type="textarea" placeholder="Enter your review" value={input} onChange= {(e)=>setInput(e.target.value)} className="m-5 p-4 w-[300px] sm:w-[1100px] rounded-full"/>
+        <div className="h-[10%] flex w-full">
+          <form onSubmit={handleSubmit} className="w-[90%]">
+            <input type="textarea" placeholder="Enter your review" value={input} onChange= {(e)=>setInput(e.target.value)} className=" mt-4 p-4 w-full rounded-full"/>
           </form>
-          <img src={send} className=" h-[50px] mt-6 hover:cursor-pointer rounded-full" onClick={handleSubmit}/>
+          <img src={send} className=" h-[50px] mt-4 hover:cursor-pointer rounded-full m-auto" onClick={handleSubmit}/>
         </div>
       </div>
 

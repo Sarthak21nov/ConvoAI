@@ -52,7 +52,7 @@ function Login() {
   return (
     <div>
       <div className="bg-gradient-to-r from-slate-500 to-slate-50 min-h-[710px] flex justify-center items-center flex-col ">
-        <div className="bg-slate-100 min-h-[400px] min-w-[400px] rounded-3xl shadow-2xl">
+        <div className="bg-slate-100 min-h-[400px] min-w-[400px] rounded-3xl shadow-2xl mt-[100px]">
             <h2 className="font-semibold text-3xl p-4 ml-3">Sign In</h2>
             <p className="font-serif pl-4 ml-3">Sign in for seamlessly using ConvoAI</p>
             <form onSubmit={handleSubmit} className="flex flex-col">
