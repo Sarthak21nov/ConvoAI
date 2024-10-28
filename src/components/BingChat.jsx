@@ -95,20 +95,24 @@ function BingChat(props) {
     <div>
       <div className="flex w-full">
         <div className="w-[80%] h-[60px] bg-slate-200 flex justify-start shadow-2xl">
-            <img src={props.image} className="rounded-full m-2 ml-5 mt-3.5 max-h-[30px] max-w-[30px]"/>
-            <h3 className="m-2 text-black pt-2 font-normal text-lg">{props.name}</h3>
+          {/* Changed this line */}
+            <img src={props.image} className="rounded-full m-4 max-h-[30px] max-w-[30px] pt-2"/>
+            {/* Changed this line */}
+            <h3 className="m-2 text-black pt-3 font-normal text-lg">{props.name}</h3>
         </div>
         <div className="w-[20%] h-[60px] bg-black">
-            <a href="/BotSelection"><h3 className="text-lg pl-11 pt-3.5 font-semibold text-white hover:cursor-pointer hover:scale-110 hover:transition hover:transform hover:duration-300">Select Other AI</h3></a>
+          {/* Change in below line */}
+            <a href="/BotSelection"><h3 className="text-lg pl-3 pt-5 font-semibold text-white hover:cursor-pointer hover:scale-110 hover:transition hover:transform hover:duration-300">BACK</h3></a>
         </div>
       </div>
       <div>
-        <div className="bg-blue-500 min-h-[580px] max-h-[580px] flex-col overflow-y-auto p-5">
+        {/* Change in this line */}
+        <div className="bg-blue-500 h-[78vh] flex-col overflow-y-auto p-5"> 
         {messages.map((msg,index)=>{
             return msg.role === 'user' ? <SendMsg key={index} text={msg.text} image={UserImg}/> : <RecieveMsg key={index} text={msg.text} image={BotImg} imageResponse={msg.image}/> 
           })}
         </div>
-        <div className=" bg-gray-900 min-h-[63px]">
+        <div className=" bg-gray-900 max-h-[63px]">
           <form className="flex p-3" onSubmit={handleSubmit}>
             <input type="text" value={input} placeholder="Enter your prompt" 
             onChange = {(e)=>setInput(e.target.value)} 

@@ -29,15 +29,15 @@ function DallEChat(props) {
     <div>
       <div className="flex w-full">
         <div className="w-[80%] h-[60px] bg-purple-800 flex justify-start shadow-2xl">
-            <img src={props.image} className="rounded-full m-2 ml-5 mt-3.5 max-h-[30px] max-w-[30px]"/>
-            <h3 className="m-2 text-white pt-2 font-normal text-lg">{props.name}</h3>
+            <img src={props.image} className="rounded-full m-4 max-h-[30px] max-w-[30px] pt-2"/>
+            <h3 className="m-2 text-white pt-3 font-normal text-lg">{props.name}</h3>
         </div>
         <div className="w-[20%] h-[60px] bg-black">
-            <a href="/BotSelection"><h3 className="text-lg pl-11 pt-3.5 font-semibold text-white hover:cursor-pointer hover:scale-110 hover:transition hover:transform hover:duration-300">Select Other AI</h3></a>
+            <a href="/BotSelection"><h3 className="text-lg pl-3 pt-5 font-semibold text-white hover:cursor-pointer hover:scale-110 hover:transition hover:transform hover:duration-300">BACK</h3></a>
         </div>
       </div>
       <div>
-        <div className="min-h-[580px] bg-blue-500 flex-col overflow-y-auto p-5">
+        <div className="bg-blue-500 h-[78vh] flex-col overflow-y-auto p-5">
         {messages.map((msg,index)=>{
             return msg.role === 'user' ? <SendMsg key={index} text={msg.text} image={UserImg}/> : <RecieveMsg key={index} text={msg.text} image={BotImg}/> 
           })}

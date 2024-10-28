@@ -32,7 +32,7 @@ function App() {
       <BrowserRouter>
         <div className='sm:grid sm:grid-cols-6 overflow-x-hidden overflow-y-auto pt-[70px]'>
           <div className='sm:col-span-1 sm:block hidden'><Sidebar/></div>
-          <div className='sm:col-span-5 sm:overflow-hidden'>
+          <div className='sm:col-span-5 sm:overflow-hidden h-[100%]'>
             <Routes>
               <Route path='/' element={<Home/>}/>
               <Route path='/about' element={<About/>}/>
