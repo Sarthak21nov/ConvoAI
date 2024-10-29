@@ -23,29 +23,12 @@ export const Login = async (req,res)=>{
 
         
         return res.cookie('userToken',Token, {
+            expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
             httpOnly: true, 
-            secure: true,
-            maxAge: 24 * 60 * 60 * 1000
         }).json({status: true, message: "User Logged In", token: Token, userData: userExist})
 
     } catch(err){
         res.json({status: false, message: "An Error Occurred while login"})
     }
-}
-
-export const VerifyToken = (req,res)=>{
-    const Token = req.headers.Authorization;
-
-    if(!Token){
-        return res.json({status: false, message: "Unable to recieve token"})
-    }
-
-    try{ 
-        const decoded = jwt.verify(Token, process.env.JWT_TOKEN)
-        return res.json({status: true, message: "User is Logged In", data: decoded})
-    } catch(err){
-        return res.json({status: false, message: "User is not Logged In"})
-    }
-    
 }
 

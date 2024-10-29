@@ -1,9 +1,9 @@
+/* eslint-disable no-unused-vars */
 
 import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Cookies from "js-cookie"
-
 
 function Login() {
 
@@ -35,8 +35,7 @@ function Login() {
             console.log(`Data = ${userData.Name}`)
             if(status){
               alert("Logged In Successfully")
-              // localStorage.setItem('authToken', token)
-              Cookies.set('authToken', token, {secure: true, sameSite: 'Strict'})
+              Cookies.set('Token', token, {secure: true, sameSite: 'Strict', expires: 3})
               localStorage.setItem('userName', userData.Name)
               navigate('/')
             } else{

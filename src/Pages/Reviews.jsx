@@ -63,8 +63,8 @@ function Reviews() {
   const Year = d.getFullYear()
 
   const userLoggedIn = ()=>{
-    const cookie = Cookies.get('authToken')
-    console.log(cookie)
+    const cookie = Cookies.get('Token')
+    // console.log(cookie)
     if(cookie){
       return true
     } else{
