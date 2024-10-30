@@ -1,14 +1,33 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Menu from '../assets/menu.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 function Navbar() {
 
   const [isMenuOpen, SetMenu] = useState(false)
+  const [isLogin, setLogin] = useState(false)
+  const navigate = useNavigate()
 
   const ToggleNavbar = ()=>{
     SetMenu(!isMenuOpen)
+  }
+
+  const Token = Cookies.get('Token')
+  
+  useEffect(()=>{
+    setLogin(!!Token)
+  }, [Token])
+
+  const handleLogout = () => {
+    Cookies.remove('Token')
+    localStorage.removeItem('userName')
+    localStorage.removeItem('authToken')
+    localStorage.removeItem('islogin')
+    alert("Logged Out Successfully")
+    setLogin(false)
+    navigate('/')
   }
 
   return (
@@ -19,6 +38,7 @@ function Navbar() {
             src={Menu}
             className='max-h-[40px] max-w-[40px] hover:scale-110 hover:transition hover:duration-300 block sm:hidden'
             alt="Menu Icon"
+            loading='lazy'
           />
         </div>
         <div className='flex flex-grow justify-center items-center'>
@@ -43,9 +63,15 @@ function Navbar() {
             <a href='/commAndreview'><p className='text-center hover:bg-slate-800 hover:text-white p-2 hover:cursor-pointer'>Reviews</p></a>
           </div>
           <hr />
-          <div>
-            <a href='/login'><p className='text-center hover:bg-slate-800 hover:text-white p-2 hover:cursor-pointer'>Login</p></a>
-          </div>
+          {isLogin ? (
+            <div>
+              <p className='text-center hover:bg-slate-800 hover:text-white p-2 hover:cursor-pointer' onClick={handleLogout}>Log Out</p>
+            </div>
+          ) : (
+            <div>
+              <a href='/login'><p className='text-center hover:bg-slate-800 hover:text-white p-2 hover:cursor-pointer'>Login</p></a>
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -53,3 +79,4 @@ function Navbar() {
 }
 
 export default Navbar
+
