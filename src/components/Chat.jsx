@@ -7,12 +7,15 @@ import SendMsg from "./SendMsg";
 import RecieveMsg from "./RecieveMsg";
 import BotImg from '../assets/bot.jpeg';
 import UserImg from '../assets/userImg.png'; 
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 function Chat(props) {
 
   const [input, setInput] = useState("")
   const [response, setResponse] = useState("")
   const [messages, setMessages] = useState([])
+  const navigate = useNavigate()
   
 
   async function generateResponse(){
@@ -46,6 +49,16 @@ function Chat(props) {
       const res_data = {role: 'bot', text: data}
       setResponse(data)
       setMessages((prevMessage)=>[...prevMessage, res_data])
+      const Token = Cookies.get('Token')
+      let count = parseInt(localStorage.getItem('PromptCounter'), 10) || 0
+      count += 1;
+      if(count >= 4){
+        if(!Token){
+          alert("Oh! You have reached maximum limits of free generations present here. Please login in to Continue using ConvoAI")
+          navigate('/login')
+        }
+      } 
+      localStorage.setItem('PromptCounter', count)
     } catch (error) {
 	    console.error(error);
     }

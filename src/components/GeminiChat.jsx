@@ -7,6 +7,8 @@ import SendMsg from "./SendMsg";
 import RecieveMsg from "./RecieveMsg";
 import BotImg from '../assets/bot.jpeg';
 import UserImg from '../assets/userImg.png'; 
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 function GeminiChat(props) {
 
@@ -14,6 +16,7 @@ function GeminiChat(props) {
   const [response, setResponse] = useState("")
   const [messages, setMessages] = useState([])
   const [typed, setTyped] = useState("")
+  const navigate = useNavigate()
 
   async function generateResponse(){
     const userMessage = {role:'user', text: input}
@@ -42,7 +45,16 @@ function GeminiChat(props) {
     var output = res.data.candidates[0].content.parts[0].text
     const reply = {role:"bot", text: output}
     setMessages((prevMessages)=>[...prevMessages, reply])
-    
+    const Token = Cookies.get('Token')
+    let count = parseInt(localStorage.getItem('PromptCounter'), 10) || 0
+    count += 1;
+    if(count >= 4){
+      if(!Token){
+        alert("Oh! You have reached maximum limits of free generations present here. Please login in to Continue using ConvoAI")
+        navigate('/login')
+      }
+    } 
+    localStorage.setItem('PromptCounter', count)
   }
 
   const handleSubmit = (e)=>{

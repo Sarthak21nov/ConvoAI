@@ -2,7 +2,7 @@
 import './App.css'
 import Sidebar from './components/Sidebar.jsx'
 import './index.css'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 import Home from './Pages/Home.jsx'
 import About from './Pages/About.jsx'
 import ChatBots from './Pages/ChatBots.jsx'
@@ -23,12 +23,13 @@ import Verification from './Pages/Verification.jsx'
 import Navbar from './components/Navbar.jsx'
 import Loader from './components/Loader.jsx'
 import { useEffect, useState } from 'react'
-
+import Cookies from 'js-cookie'
 
 
 function App() {
 
   const [IsLoading, SetLoading] = useState(true)
+  const [promptCounter, setPromptCount] = useState(0)
 
   useEffect(()=>{
     const loading = async () => {
@@ -38,6 +39,18 @@ function App() {
     }
     loading()
   }, [])
+
+  useEffect(()=>{
+    localStorage.setItem('PromptCounter', promptCounter)
+    const Token = Cookies.get('Token')
+    if(promptCounter>4){
+      if(!Token){
+        alert("You have exceeded the free limit of the Prompt Generations. Please login in order to keep using ConvoAI platform.")
+      }
+    }
+  },[promptCounter])
+
+
 
   return (
     <div>

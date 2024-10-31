@@ -8,14 +8,15 @@ import BotImg from '../assets/bot.jpeg'
 import send from '../assets/send.png'
 import LlamaAI from "llamaai";
 import axios from "axios"
-import { Player } from '@lottiefiles/react-lottie-player';
-import SorryGif from '../assets/SorryGif.json'
+import { useNavigate } from "react-router-dom"
+import Cookies from "js-cookie"
 
 function LlamaChat(props) {
 
     const [input, setInput] = useState("")
     const [response, setResponse] = useState("")
     const [messages, setMessages] = useState([])
+    const navigate = useNavigate()
 
     function removeMarkdownFormatters(markdown) {
       // Define regex patterns for various Markdown formatters
@@ -69,6 +70,16 @@ function LlamaChat(props) {
           const data = removeMarkdownFormatters(result.msg)
           const BotMessage = {role: 'bot', text: data}
           setMessages((prevMessage)=>[...prevMessage, BotMessage])
+          const Token = Cookies.get('Token')
+          let count = parseInt(localStorage.getItem('PromptCounter'), 10) || 0
+          count += 1;
+          if(count >= 4){
+            if(!Token){
+            alert("Oh! You have reached maximum limits of free generations present here. Please login in to Continue using ConvoAI")
+            navigate('/login')
+            }
+          } 
+          localStorage.setItem('PromptCounter', count)
         } catch (error) {
 	        console.error(error);
         }

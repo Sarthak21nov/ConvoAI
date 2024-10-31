@@ -33,3 +33,16 @@ export const putReview = async (req,res)=>{
     
 
 }
+
+export const DeleteReview = async (req, res)=>{
+    try{
+        const {userName, ReviewText} = req.body;
+        if(!userName || !ReviewText){
+            return res.json({status: false, message: "Unable to delete"})
+        }
+        await Review.findOneAndDelete({userName, ReviewText})
+        return res.json({status: true, message: "Review Deleted Successfully"})
+    } catch (err){
+        return res.json({status: false, message: "An error occurred while deleting Review"})
+    }
+}
