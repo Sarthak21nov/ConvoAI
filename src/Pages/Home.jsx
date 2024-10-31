@@ -46,7 +46,7 @@ function Home() {
           src={animation}
           loop
           autoplay
-          className='sm:w-[800px] sm:h-full w-full h-full bg-slate-500'
+          className='sm:w-[800px] sm:h-full w-full h-full bg-slate-500 sm:pl-[30%] pl-[10%]'
           />
         </div>
         <div id='scroll-section' className='bg-slate-300 p-20 text-lg'>

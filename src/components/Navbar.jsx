@@ -15,7 +15,7 @@ function Navbar() {
   }
 
   const Token = Cookies.get('Token')
-  
+
   useEffect(()=>{
     setLogin(!!Token)
   }, [Token])
@@ -27,7 +27,7 @@ function Navbar() {
     localStorage.removeItem('islogin')
     alert("Logged Out Successfully")
     setLogin(false)
-    navigate('/')
+    navigate('/login')
   }
 
   return (

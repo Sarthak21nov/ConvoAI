@@ -21,13 +21,29 @@ import Forget from './Pages/forget.jsx'
 import ChangePassword from './Pages/ChangePassword.jsx'
 import Verification from './Pages/Verification.jsx'
 import Navbar from './components/Navbar.jsx'
+import Loader from './components/Loader.jsx'
+import { useEffect, useState } from 'react'
 
 
 
 function App() {
 
+  const [IsLoading, SetLoading] = useState(true)
+
+  useEffect(()=>{
+    const loading = async () => {
+      SetLoading(true)
+      await new Promise((resolve)=> setTimeout(resolve, 2000))
+      SetLoading(false)
+    }
+    loading()
+  }, [])
+
   return (
     <div>
+      {IsLoading ? (
+        <Loader />
+      ) : (
       <BrowserRouter>
       <Navbar />
         <div className='sm:grid sm:grid-cols-6 overflow-x-hidden overflow-y-auto pt-[70px]'>
@@ -55,6 +71,7 @@ function App() {
           </div>
         </div>
       </BrowserRouter>
+      )}
     </div>
   )
 }
